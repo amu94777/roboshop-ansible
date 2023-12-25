@@ -18,3 +18,8 @@
       name: rabbitmq-server
       state: started
       enabled: yes
+
+  - name: add user and password
+    ansible.builtin.user:
+      name: roboshop
+      password: roboshop123

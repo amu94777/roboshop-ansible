@@ -27,4 +27,5 @@
   - name: extract the content
     ansible.builtin.extract:
       src: /tmp/cart.zip
-      dest: /app     
+      dest: /app
+      remote_src: yes     

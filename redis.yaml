@@ -4,6 +4,4 @@
   tasks: 
   - name: Download url
     ansible.builtin.get_url:
-      url: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
-
-      
+      url: https://rpms.remirepo.net/enterprise/remi-release-8.rpm 

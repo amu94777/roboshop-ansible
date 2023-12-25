@@ -30,10 +30,10 @@
       dest: /app
       remote_src: yes
 
-  - name: install npm
-    ansible.builtin.package:
-      name: npm
-      state: present
+  - name: install npm dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
 
   - name: copy catalogue service file
     ansible.builtin.copy:

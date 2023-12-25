@@ -7,4 +7,15 @@
 
   - name: enable module
     ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
+
+  - name: install redis
+    ansible.builtin.package:
+      name: redis
+      state: present
+
+  - name: Replace string means port number
+    ansible.builtin.replace:
+      path: /etc/redis.conf
+      regexp: 127.0.0.1
+      replace: 0.0.0.0   
       

@@ -1,9 +1,9 @@
-- name: INSTALL NGINX
+- name: install nginx
   ansible.builtin.package:
     name: nginx
     state: present
 
-- name: START AND ENABLE NGINX
+- name: start and enable nginx
   ansible.builtin.service:
     name: nginx
     state: started

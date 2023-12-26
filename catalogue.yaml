@@ -70,7 +70,7 @@
 
   - name: load catalog data
     ansible.builtin.command: mongo --host  mongodb.jaya123.shop < /app/schema/catalogue.js
-    when: product_count.stdout == 0
+    when: product_count.stdout == "0"
 
   - name: enable and restart the catalogue
     ansible.builtin.service:

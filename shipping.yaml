@@ -13,7 +13,7 @@
     ansible.builtin.user:
       name: roboshop
 
-  - name: Recursively remove app directory
+  - name: remove app directory
     ansible.builtin.file:
       path: /app
       state: absent
@@ -39,11 +39,10 @@
     args:
       chdir: /app
 
-  - name: Move the src file to dest
+  - name: rename jar file
     ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
     args:
-      removes: target/shipping-1.0.jar
-      creates: shipping.jar
+      chdir: /app
 
   - name: copy shipping.service file
     ansible.builtin.copy:

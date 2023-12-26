@@ -69,7 +69,7 @@
       msg: "schema output: {{schema}}"
 
   - name: load cities data
-    ansible.builtin.shell: "mysql -h mysql.jaya123.shop -uroot -p{{mysql_password}}  < /app/schema/shipping.sql"
+    ansible.builtin.command: "mysql -h mysql.jaya123.shop -uroot -p{{mysql_password}}  < /app/schema/shipping.sql"
     when: schema.stdout != "1"
 
   - name: start and enable shipping

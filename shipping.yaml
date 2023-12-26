@@ -1,6 +1,8 @@
 - name: shipping configuration
   hosts: shipping
   become: yes
+  vars:
+    mysql_password: RoboShop@1
   tasks:
   - name: install maven
     ansible.builtin.package:
@@ -58,8 +60,17 @@
       name: mysql
       state: present
 
-  - name: load  data
-    ansible.builtin.shell: mysql -h mysql.jaya123.shop -uroot -pRoboShop@1 < /app/schema/shipping.sql
+  - name: check cities schema exists or not
+    ansible.builtin.command:  mysql -h mysql.jaya123.shop -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
+    register: schema
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "schema output: {{schema}}"
+
+  - name: load cities data
+    ansible.builtin.shell: "mysql -h mysql.jaya123.shop -uroot -p{{mysql_password}}  < /app/schema/shipping.sql"
+
 
   - name: restart shipping
     ansible.builtin.service:

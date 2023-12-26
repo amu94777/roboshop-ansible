@@ -66,11 +66,11 @@
 
   - name: print the count
     ansible.builtin.debug:
-      msg: "user count: {{user_count}}"
+      msg: "product count: {{user_count}}"
 
   - name: load user data
     ansible.builtin.command: mongo --host  mongodb.jaya123.shop < /app/schema/user.js
-    when: user_count.stdout == 0
+    when: user_count.stdout == "0"
 
          
 
